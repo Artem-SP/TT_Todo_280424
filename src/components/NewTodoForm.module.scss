@@ -1,0 +1,11 @@
+.form {
+  display: flex;
+  width: max-content;
+  margin: 30px auto;
+
+  &_input {
+    height: 40px;
+    outline: none;
+    padding-left: 15px;
+  }
+}

@@ -1,5 +1,7 @@
-import { useAppDispatch } from "../hooks";
+import { useAppDispatch } from "../store/hooks";
 import { toggleComplete, removeTodo } from "../store/todoSlice";
+
+import styles from "./TodoItem.module.scss";
 
 interface TodoItemProps {
   id: string;
@@ -17,7 +19,7 @@ const TodoItem: React.FC<TodoItemProps> = ({ id, title, completed }) => {
         checked={completed}
         onChange={() => dispatch(toggleComplete(id))}
       />
-      <span>{title}</span>
+      <span className={styles.title}>{title}</span>
       <span onClick={() => dispatch(removeTodo(id))}>&times;</span>
     </li>
   );

@@ -1,33 +1,24 @@
-import { useState } from "react";
-import { useAppDispatch } from "./hooks";
+import NavBar from "./components/NavBar";
 
-import { addTodo } from "./store/todoSlice";
-import NewTodoForm from "./components/NewTodoForm";
-import TodoList from "./components/TodoList";
+import ActivePage from "./pages/Active";
+import CompleatedPage from "./pages/Compleated";
+import HomePage from "./pages/Home";
 
-import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function App() {
-  const [text, setText] = useState("");
-  const dispatch = useAppDispatch();
-
-  const handleAction = () => {
-    if (text.trim().length) {
-      dispatch(addTodo(text));
-      setText("");
-    }
-  };
-
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <NewTodoForm
-        value={text}
-        updateText={setText}
-        handleAction={handleAction}
-      />
-      <TodoList />
+    <div>
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/active" element={<ActivePage />} />
+          <Route path="/compleated" element={<CompleatedPage />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
-}
+};
 
 export default App;
